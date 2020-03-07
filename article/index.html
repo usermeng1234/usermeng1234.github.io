@@ -17,18 +17,18 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1.什么是跨域问题：​    前后端分离，前台调用后台接口会发生跨域问题 2.为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）1）浏览器限制2）跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）3）XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）3.解决思路​    浏览器————&gt;XHR（JSONP）—————&gt;跨域">
+  <meta name="description" content="什么是跨域问题：​    前后端分离，前台调用后台接口会发生跨域问题 为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）浏览器限制跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）解决思路​    浏览器————&gt;XHR（JSONP）—————&gt;跨域（被调用方（支持跨域）与">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AJAX跨域">
 <meta property="og:url" content="http://yoursite.com/article/index.html">
 <meta property="og:site_name" content="MR.Meng">
-<meta property="og:description" content="1.什么是跨域问题：​    前后端分离，前台调用后台接口会发生跨域问题 2.为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）1）浏览器限制2）跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）3）XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）3.解决思路​    浏览器————&gt;XHR（JSONP）—————&gt;跨域">
+<meta property="og:description" content="什么是跨域问题：​    前后端分离，前台调用后台接口会发生跨域问题 为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）浏览器限制跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）解决思路​    浏览器————&gt;XHR（JSONP）—————&gt;跨域（被调用方（支持跨域）与">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-07T07:10:08.933Z">
-<meta property="article:modified_time" content="2020-03-07T07:16:18.259Z">
+<meta property="article:modified_time" content="2020-03-07T09:43:53.531Z">
 <meta property="article:author" content="Mr.Meng">
 <meta name="twitter:card" content="summary">
 
@@ -104,6 +104,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -117,14 +118,70 @@
     <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
 
   </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+  
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -172,7 +229,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-03-07 15:10:08 / Modified: 15:16:18" itemprop="dateCreated datePublished" datetime="2020-03-07T15:10:08+08:00">2020-03-07</time>
+              <time title="Created: 2020-03-07 15:10:08 / Modified: 17:43:53" itemprop="dateCreated datePublished" datetime="2020-03-07T15:10:08+08:00">2020-03-07</time>
             </span>
 
           
@@ -186,10 +243,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1-什么是跨域问题："><a href="#1-什么是跨域问题：" class="headerlink" title="1.什么是跨域问题："></a>1.什么是跨域问题：</h3><p>​    前后端分离，前台调用后台接口会发生跨域问题</p>
-<h3 id="2-为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"><a href="#2-为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）" class="headerlink" title="2.为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"></a>2.为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）</h3><h5 id="1）浏览器限制"><a href="#1）浏览器限制" class="headerlink" title="1）浏览器限制"></a>1）浏览器限制</h5><h5 id="2）跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）"><a href="#2）跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）" class="headerlink" title="2）跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）"></a>2）跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）</h5><h5 id="3）XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）"><a href="#3）XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）" class="headerlink" title="3）XHR（XMLHttpRequest）请求 即浏览器（Type=xhr）"></a>3）XHR（XMLHttpRequest）请求 即浏览器（Type=xhr）</h5><h3 id="3-解决思路"><a href="#3-解决思路" class="headerlink" title="3.解决思路"></a>3.解决思路</h3><p>​    浏览器————&gt;XHR（JSONP）—————&gt;跨域（被调用方（支持跨域）与 调用方（隐藏跨域））</p>
-<h3 id="4-全面解决跨域"><a href="#4-全面解决跨域" class="headerlink" title="4.全面解决跨域"></a>4.全面解决跨域</h3><h4 id="被调用方（支持跨域）"><a href="#被调用方（支持跨域）" class="headerlink" title="*被调用方（支持跨域）"></a>*被调用方（支持跨域）</h4><h5 id="1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）"><a href="#1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）" class="headerlink" title="1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）"></a>1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）</h5><p>​        进入Appdata\local\google\chrome\application 执行命令<br>​        chrome –disable-web-security –user-data-dir=e:\temp3（自定义文件夹）<br>​        然后请求不会发生跨域安全检验</p>
-<h5 id="2）JSONP解决跨域-动态创建script-发请求"><a href="#2）JSONP解决跨域-动态创建script-发请求" class="headerlink" title="2）JSONP解决跨域(动态创建script,发请求)"></a>2）JSONP解决跨域(动态创建script,发请求)</h5><p>​    (前台部分代码)<br>​    </p>
+        <h3 id="什么是跨域问题："><a href="#什么是跨域问题：" class="headerlink" title="什么是跨域问题："></a>什么是跨域问题：</h3><p>​    前后端分离，前台调用后台接口会发生跨域问题</p>
+<h3 id="为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"><a href="#为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）" class="headerlink" title="为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"></a>为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）</h3><h4 id="浏览器限制"><a href="#浏览器限制" class="headerlink" title="浏览器限制"></a>浏览器限制</h4><h4 id="跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）"><a href="#跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）" class="headerlink" title="跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）"></a>跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）</h4><h4 id="XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）"><a href="#XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）" class="headerlink" title="XHR（XMLHttpRequest）请求 即浏览器（Type=xhr）"></a>XHR（XMLHttpRequest）请求 即浏览器（Type=xhr）</h4><h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>​    浏览器————&gt;XHR（JSONP）—————&gt;跨域（被调用方（支持跨域）与 调用方（隐藏跨域））</p>
+<h3 id="全面解决跨域"><a href="#全面解决跨域" class="headerlink" title="全面解决跨域"></a>全面解决跨域</h3><h4 id="被调用方（支持跨域）"><a href="#被调用方（支持跨域）" class="headerlink" title="*被调用方（支持跨域）"></a>*被调用方（支持跨域）</h4><h5 id="浏览器禁止检查（跨域问题在前台做校验，与后台无关）"><a href="#浏览器禁止检查（跨域问题在前台做校验，与后台无关）" class="headerlink" title="浏览器禁止检查（跨域问题在前台做校验，与后台无关）"></a>浏览器禁止检查（跨域问题在前台做校验，与后台无关）</h5><p>​        进入Appdata\local\google\chrome\application 执行命令<br>​        chrome –disable-web-security –user-data-dir=e:\temp3（自定义文件夹）<br>​        然后请求不会发生跨域安全检验</p>
+<h5 id="JSONP解决跨域-动态创建script-发请求"><a href="#JSONP解决跨域-动态创建script-发请求" class="headerlink" title="JSONP解决跨域(动态创建script,发请求)"></a>JSONP解决跨域(动态创建script,发请求)</h5><p>​    (前台部分代码)<br>​    </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result;</span><br><span class="line">            $.ajax(&#123;</span><br><span class="line">                url:base+<span class="string">"/get1"</span>,</span><br><span class="line">                dataType:<span class="string">"jsonp"</span>,</span><br><span class="line">			<span class="comment">//	jsonp:"callback2",</span></span><br><span class="line">			<span class="comment">//	cache:true,//结果可以被缓存 _=参数消失</span></span><br><span class="line">			<span class="comment">//	type:"post",//只支持GET，post方法没用</span></span><br><span class="line">				success:<span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</span><br><span class="line">                   result=json;</span><br><span class="line">                  &#125;</span><br><span class="line">				)&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>(后台实现代码)</p>
@@ -198,26 +255,25 @@
 <p>实现原理：<br>    .使用dataType:”jsonp” 发送的请求Type字段为script不是xhr，所以jsonp可以解决跨域问题<br>    .返回类型不同（返回application/javascript脚本，不是application/json）<br>    .name中的url有两个参数callback=函数名 与_=（防止请求被缓存的）</p>
 <p>实现原理：<br>    .使用dataType:”jsonp” 发送的请求Type字段为script不是xhr，所以jsonp可以解决跨域问题<br>    .返回类型不同（返回application/javascript脚本，不是application/json）<br>    .name中的url有两个参数callback=函数名 与_=（防止请求被缓存的）</p>
 <p>JSONP弊端：<br>    .服务器需要改动<br>    .只支持GET<br>    .发送的不是XHR请求</p>
-<h5 id="3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）"><a href="#3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）" class="headerlink" title="3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）"></a>3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）</h5><p>​    .服务器端添加一个Filter AjaxServerApplication:<br>​    </p>
+<h5 id="被调用方解决（服务器端实现，NGINX配置，APACHE配置）"><a href="#被调用方解决（服务器端实现，NGINX配置，APACHE配置）" class="headerlink" title="被调用方解决（服务器端实现，NGINX配置，APACHE配置）"></a>被调用方解决（服务器端实现，NGINX配置，APACHE配置）</h5><p>​    .服务器端添加一个Filter AjaxServerApplication:<br>​    </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> FilterRegistrationBean <span class="title">registerFilter</span><span class="params">()</span></span>&#123;</span><br><span class="line">		FilterRegistrationBean bean=<span class="keyword">new</span> FilterRegistrationBean();</span><br><span class="line">			bean.addUrlPatterns(<span class="string">"/*"</span>);</span><br><span class="line">			bean.setFilter(<span class="keyword">new</span> CrosFilter());</span><br><span class="line">			<span class="keyword">return</span> bean;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 
 
 <p>​    doFilter:<br>​      </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">			HttpServletResponse res=(HttpServletResponse) servletResponse;</span><br><span class="line"></span><br><span class="line"><span class="comment">//      	res.addHeader("Access-Control-Allow-Origin","http://localhost:8081");</span></span><br><span class="line">			res.addHeader(<span class="string">"Access-Control-Allow-Origin"</span>,<span class="string">"*"</span>);</span><br><span class="line"><span class="comment">//      	res.addHeader("Access-Control-Allow-Methods","GET");</span></span><br><span class="line">			res.addHeader(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"*"</span>);</span><br><span class="line">			res.addHeader(<span class="string">"Access-Control-Allow-Headers"</span>,<span class="string">"content-type"</span>);</span><br><span class="line">			filterChain.doFilter(servletRequest,servletResponse);</span><br></pre></td></tr></table></figure>
 
-<h5 id="4）简单请求与非简单请求"><a href="#4）简单请求与非简单请求" class="headerlink" title="4）简单请求与非简单请求"></a>4）简单请求与非简单请求</h5><p>​        简单请求：<br>​            方法为：GET,HEAD,POST<br>​            请求header里无自定义头<br>​            Content-Type为以下几种：<br>​                text/plain<br>​                multipart/form-data<br>​                application/x-www-form-urlencoded<br>​        </p>
+<h5 id="简单请求与非简单请求"><a href="#简单请求与非简单请求" class="headerlink" title="简单请求与非简单请求"></a>简单请求与非简单请求</h5><p>​        简单请求：<br>​            方法为：GET,HEAD,POST<br>​            请求header里无自定义头<br>​            Content-Type为以下几种：<br>​                text/plain<br>​                multipart/form-data<br>​                application/x-www-form-urlencoded<br>​        </p>
 <p>​        非简单请求：<br>​            put,delete方法的ajax请求<br>​            发送json格式的ajax请求<br>​            带自定义头的ajax请求<br>​<br>​            OPTIONS预检命令<br>​            OPTIONS预检命令缓存<br>​    </p>
-<h5 id="5）带Cookie的跨域"><a href="#5）带Cookie的跨域" class="headerlink" title="5）带Cookie的跨域"></a>5）带Cookie的跨域</h5><p>​    </p>
+<h5 id="带Cookie的跨域"><a href="#带Cookie的跨域" class="headerlink" title="带Cookie的跨域"></a>带Cookie的跨域</h5><p>​    </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HttpServletRequest req=(HttpServletRequest) servletRequest;</span><br><span class="line"></span><br><span class="line">    String origin=req.getHeader(<span class="string">"Origin"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!org.springframework.util.StringUtils.isEmpty(origin))&#123;</span><br><span class="line">        <span class="comment">//      带cookie的时候，origin必须是全匹配，不能用*</span></span><br><span class="line">        res.addHeader(<span class="string">"Access-Control-Allow-Origin"</span>,origin);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="6）带自定义头的跨域"><a href="#6）带自定义头的跨域" class="headerlink" title="6）带自定义头的跨域"></a>6）带自定义头的跨域</h5><p>​    </p>
+<h5 id="带自定义头的跨域"><a href="#带自定义头的跨域" class="headerlink" title="带自定义头的跨域"></a>带自定义头的跨域</h5><p>​    </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//        支持所有自定义头 </span></span><br><span class="line">    String headers=req.getHeader(<span class="string">"Access-Control-Allow-Headers"</span>);</span><br><span class="line">    <span class="keyword">if</span> (!org.springframework.util.StringUtils.isEmpty(headers))&#123;</span><br><span class="line">        <span class="comment">//      带cookie的时候，origin必须是全匹配，不能用*</span></span><br><span class="line">        res.addHeader(<span class="string">"Access-Control-Allow-Headers"</span>,headers);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="7）被调用方NGINX解决方案"><a href="#7）被调用方NGINX解决方案" class="headerlink" title="7）被调用方NGINX解决方案"></a>7）被调用方NGINX解决方案</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">listen 80;</span><br><span class="line">server_name mengwenxing.com;&#x2F;&#x2F;前端请求地址改成server_name进行测试</span><br><span class="line"></span><br><span class="line">location &#x2F;&#123;</span><br><span class="line">	proxy_pass http:&#x2F;&#x2F;localhost:8080&#x2F;;</span><br><span class="line">	</span><br><span class="line">	add_header Access-Control-Allow-Methods *;</span><br><span class="line">	add_header Access-Control-Max-Age 3600;</span><br><span class="line">	add_header Access-Control-Allow-Credentials true;</span><br><span class="line">	</span><br><span class="line">	add_header Access-Control-Allow-Origin $http_origin;</span><br><span class="line">	add_header Access-Control-Allow-Headers </span><br><span class="line">	$http_access_control_request_headers;</span><br><span class="line">	</span><br><span class="line">	if ($request_method &#x3D; OPTIONS)&#123;</span><br><span class="line">			return 200;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="被调用方NGINX解决方案"><a href="#被调用方NGINX解决方案" class="headerlink" title="被调用方NGINX解决方案"></a>被调用方NGINX解决方案</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">listen 80;</span><br><span class="line">server_name mengwenxing.com;&#x2F;&#x2F;前端请求地址改成server_name进行测试</span><br><span class="line"></span><br><span class="line">location &#x2F;&#123;</span><br><span class="line">	proxy_pass http:&#x2F;&#x2F;localhost:8080&#x2F;;</span><br><span class="line">	</span><br><span class="line">	add_header Access-Control-Allow-Methods *;</span><br><span class="line">	add_header Access-Control-Max-Age 3600;</span><br><span class="line">	add_header Access-Control-Allow-Credentials true;</span><br><span class="line">	</span><br><span class="line">	add_header Access-Control-Allow-Origin $http_origin;</span><br><span class="line">	add_header Access-Control-Allow-Headers </span><br><span class="line">	$http_access_control_request_headers;</span><br><span class="line">	</span><br><span class="line">	if ($request_method &#x3D; OPTIONS)&#123;</span><br><span class="line">			return 200;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h5 id="8）被调用方apache解决方案"><a href="#8）被调用方apache解决方案" class="headerlink" title="8）被调用方apache解决方案"></a>8）被调用方apache解决方案</h5><h5 id="9）spring框架解决方案"><a href="#9）spring框架解决方案" class="headerlink" title="9）spring框架解决方案"></a>9）spring框架解决方案</h5><p>​    在Controller添加注解<br>​    @CrossOrigin（可以加在类上也可以加在方法上）</p>
-<p>*调用方（隐藏跨域）本域相对地址，不用绝对地址<br>浏览器看到的是同一个域的地址，所以不会跨域</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">listen <span class="number">80</span>;</span><br><span class="line">server_name a.com;</span><br><span class="line"></span><br><span class="line">location /&#123;</span><br><span class="line">	proxy_pass http:<span class="comment">//localhost:8081/;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /ajaxserver&#123;</span><br><span class="line">	proxy_pass http:<span class="comment">//localhost:8080/test/;</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="被调用方apache解决方案"><a href="#被调用方apache解决方案" class="headerlink" title="被调用方apache解决方案"></a>被调用方apache解决方案</h5><h5 id="spring框架解决方案"><a href="#spring框架解决方案" class="headerlink" title="spring框架解决方案"></a>spring框架解决方案</h5><p>​    在Controller添加注解<br>​    @CrossOrigin（可以加在类上也可以加在方法上）</p>
+<h4 id="调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域"><a href="#调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域" class="headerlink" title="*调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域"></a>*调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">listen <span class="number">80</span>;</span><br><span class="line">server_name a.com;</span><br><span class="line"></span><br><span class="line">location /&#123;</span><br><span class="line">	proxy_pass http:<span class="comment">//localhost:8081/;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location /ajaxserver&#123;</span><br><span class="line">	proxy_pass http:<span class="comment">//localhost:8080/test/;</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>注意:ajaxserver为反向代理域名<br>cookie加在前端</p>
 <p>代码地址：</p>
@@ -229,6 +285,70 @@
     
     
     
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    Donate
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="Mr.Meng WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://twitter.com/username">
+                <span class="icon">
+                  <i class="fa fa-twitter"></i>
+                </span>
+
+                <span class="label">Twitter</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="https://t.me/channel_name">
+                <span class="icon">
+                  <i class="fa fa-telegram"></i>
+                </span>
+
+                <span class="label">Telegram</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
 
       <footer class="post-footer">
 
@@ -294,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是跨域问题："><span class="nav-number">1.</span> <span class="nav-text">1.什么是跨域问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"><span class="nav-number">2.</span> <span class="nav-text">2.为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）浏览器限制"><span class="nav-number">2.0.1.</span> <span class="nav-text">1）浏览器限制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）"><span class="nav-number">2.0.2.</span> <span class="nav-text">2）跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）"><span class="nav-number">2.0.3.</span> <span class="nav-text">3）XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-解决思路"><span class="nav-number">3.</span> <span class="nav-text">3.解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-全面解决跨域"><span class="nav-number">4.</span> <span class="nav-text">4.全面解决跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#被调用方（支持跨域）"><span class="nav-number">4.1.</span> <span class="nav-text">*被调用方（支持跨域）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）"><span class="nav-number">4.1.1.</span> <span class="nav-text">1）浏览器禁止检查（跨域问题在前台做校验，与后台无关）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）JSONP解决跨域-动态创建script-发请求"><span class="nav-number">4.1.2.</span> <span class="nav-text">2）JSONP解决跨域(动态创建script,发请求)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）"><span class="nav-number">4.1.3.</span> <span class="nav-text">3）被调用方解决（服务器端实现，NGINX配置，APACHE配置）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4）简单请求与非简单请求"><span class="nav-number">4.1.4.</span> <span class="nav-text">4）简单请求与非简单请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5）带Cookie的跨域"><span class="nav-number">4.1.5.</span> <span class="nav-text">5）带Cookie的跨域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6）带自定义头的跨域"><span class="nav-number">4.1.6.</span> <span class="nav-text">6）带自定义头的跨域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7）被调用方NGINX解决方案"><span class="nav-number">4.1.7.</span> <span class="nav-text">7）被调用方NGINX解决方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8）被调用方apache解决方案"><span class="nav-number">4.1.8.</span> <span class="nav-text">8）被调用方apache解决方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9）spring框架解决方案"><span class="nav-number">4.1.9.</span> <span class="nav-text">9）spring框架解决方案</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是跨域问题："><span class="nav-number">1.</span> <span class="nav-text">什么是跨域问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）"><span class="nav-number">2.</span> <span class="nav-text">为什么会发生AJAX跨域问题（同时满足才有可能发生跨域安全问题）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器限制"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跨域（即：违背了同源策略-协议-域名-端口三者只要有一个不同就会发生跨域问题）"><span class="nav-number">2.2.</span> <span class="nav-text">跨域（即：违背了同源策略 协议+域名+端口三者只要有一个不同就会发生跨域问题）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XHR（XMLHttpRequest）请求-即浏览器（Type-xhr）"><span class="nav-number">2.3.</span> <span class="nav-text">XHR（XMLHttpRequest）请求 即浏览器（Type&#x3D;xhr）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决思路"><span class="nav-number">3.</span> <span class="nav-text">解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全面解决跨域"><span class="nav-number">4.</span> <span class="nav-text">全面解决跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#被调用方（支持跨域）"><span class="nav-number">4.1.</span> <span class="nav-text">*被调用方（支持跨域）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器禁止检查（跨域问题在前台做校验，与后台无关）"><span class="nav-number">4.1.1.</span> <span class="nav-text">浏览器禁止检查（跨域问题在前台做校验，与后台无关）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP解决跨域-动态创建script-发请求"><span class="nav-number">4.1.2.</span> <span class="nav-text">JSONP解决跨域(动态创建script,发请求)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#被调用方解决（服务器端实现，NGINX配置，APACHE配置）"><span class="nav-number">4.1.3.</span> <span class="nav-text">被调用方解决（服务器端实现，NGINX配置，APACHE配置）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#简单请求与非简单请求"><span class="nav-number">4.1.4.</span> <span class="nav-text">简单请求与非简单请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#带Cookie的跨域"><span class="nav-number">4.1.5.</span> <span class="nav-text">带Cookie的跨域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#带自定义头的跨域"><span class="nav-number">4.1.6.</span> <span class="nav-text">带自定义头的跨域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#被调用方NGINX解决方案"><span class="nav-number">4.1.7.</span> <span class="nav-text">被调用方NGINX解决方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#被调用方apache解决方案"><span class="nav-number">4.1.8.</span> <span class="nav-text">被调用方apache解决方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#spring框架解决方案"><span class="nav-number">4.1.9.</span> <span class="nav-text">spring框架解决方案</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域"><span class="nav-number">4.2.</span> <span class="nav-text">*调用方（隐藏跨域）本域相对地址，不用绝对地址浏览器看到的是同一个域的地址，所以不会跨域</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -343,7 +463,7 @@
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.2
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -369,7 +489,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -379,6 +499,13 @@
 
   
 
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
 
 
 
